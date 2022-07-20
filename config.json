@@ -1,0 +1,10 @@
+{
+  "url": "https://tophub.today/",
+  "userconfig": "UserConfig.txt",
+  "default_setting_filename":"config.json",
+  "widget_width": "350",
+  "widget_height": "550",
+  "widget_postion_width": "1570",
+  "widget_postion_height": "15"
+
+}
