@@ -11,7 +11,7 @@
 '''
 @FileName  :test.py
 
-@Time      :2022/7/20 14:43
+@Time      :2022/7/21 12:09
 
 @Author    :Guan_jh
 
@@ -20,103 +20,57 @@
 @Describe  :
 '''
 
-# 导入tkinter库，并设置别名为tk
-import tkinter as tk
-import math
+# -*- coding: utf-8 -*-
 
-from DragWindow import DragWindow
-
-
-def GUI():
-    # 创建Tk对象，Tk代表窗口
-    # root = tk.Tk()
-    # 设置窗口标题
-    # 创建Label对象，第一个参数指定该Label放入root
-    # 　导入DragWindow类
-
-    widget_width =350
-    widget_height = 550
-    widget_postion_width =1570
-    widget_postion_height =15
-    root = DragWindow()
-    root.set_window_size(widget_width,widget_height)
-    root.set_display_postion(widget_postion_width,widget_postion_height)
-    tk.Label(root, text="今日热榜",  # 设置文本内容
-             justify='left',  # 设置文本对齐方式：左对齐
-             anchor='nw',  # 设置文本在label的方位：西北方位
-             font=('微软雅黑', 18),  # 设置字体：微软雅黑，字号：18
-             fg="white",
-             bg="black").place(x=widget_width*0.057,y=widget_height*0.036)
-    tk.Label(root, text="微信",  # 设置文本内容
-             justify='left',  # 设置文本对齐方式：左对齐
-             anchor='nw',  # 设置文本在label的方位：西北方位
-             font=('微软雅黑', int(math.sqrt(int(widget_width*widget_height))*0.0319)),  # 设置字体：微软雅黑，字号：18
-             fg="white",
-             bg="black",  # 设置x方向内边距：20
-             ).place(x=widget_width*0.07, y=widget_height*0.11)
-    tk.Label(root, text="十大热门话题",  # 设置文本内容
-             justify='left',  # 设置文本对齐方式：左对齐
-             anchor='nw',  # 设置文本在label的方位：西北方位
-             font=('微软雅黑', int(math.sqrt(int(widget_width*widget_height))*0.0205)),  # 设置字体：微软雅黑，字号：18
-             fg="white",
-             bg="black",  # 设置x方向内边距：20
-             ).place(x=widget_width*0.75, y=widget_height*0.11)
-    for i in range(10):
-        j=0
-        hhh = tk.StringVar().set(str(i))
-        tk.Label(root, text=i + 1,  # 设置文本内容
-                 justify='left',  # 设置文本对齐方式：左对齐
-                 anchor='nw',  # 设置文本在label的方位：西北方位
-                 font=('微软雅黑', int(math.sqrt(int(widget_width*widget_height))*0.025)),  # 设置字体：微软雅黑，字号：18
-                 fg="white",
-                 bg="black",
-                 ).place(x=widget_width * 0.09, y=widget_height * 0.182 + widget_height * 0.0727 * i)
-        ml = tk.Label(root, text="热门内容呢热门内容呢热门内容呢热门内容呢\n"
-                            "热门内容呢热门内容呢热门内容呢热门内容呢...",  # 设置文本内容20字
-                 justify='left',  # 设置文本对齐方式：左对齐
-                 anchor='nw',  # 设置文本在label的方位：西北方位
-                 font=('微软雅黑', int(math.sqrt(int(widget_width*widget_height))*0.0205)),  # 设置字体：微软雅黑，字号：18
-                 fg="white",
-                 bg="black",
-                 textvariable="aaaaaaaaaaaaaaaaaaaaa"
-                 )
-        ml.place(x=widget_width * 0.17, y=widget_height * 0.182 + widget_height * 0.073 * i)
+import wx
+import wx.adv
 
 
-        ml.bind('<Button>', lambda event:changeColor(event, i))
+class FolderBookmarkTaskBarIcon(wx.adv.TaskBarIcon):
+    ICON = 'icon.ico'
+    TITLE = '测试系统托盘图标'
 
-        tk.Label(root, text="热销1.5w",  # 设置文本内容20字
-                 justify='left',  # 设置文本对齐方式：左对齐
-                 anchor='nw',  # 设置文本在label的方位：西北方位
-                 font=('微软雅黑', int(math.sqrt(int(widget_width*widget_height))*0.0205)),  # 设置字体：微软雅黑，字号：18
-                 fg="white",
-                 bg="black",
-                 ).place(x=widget_width * 0.83, y=widget_height * 0.182 + widget_height * 0.073 * i)
-    tk.Button(root, text="退出", command=root.quit).place(x=widget_width/2, y=widget_height*0.94)
-    # var = tk.StringVar()
-    # w = tk.Label(root, text="Hello Python!", textvariable=var, fg='blue', font=("微软雅黑", 40))
-    # var.set("Hello Python!")
-    # # 调用pack进行布局
-    # w.pack()
+    MENU_ID1, MENU_ID2 = wx.NewIdRef(count=2)
+
+    def __init__(self):
+        super().__init__()
+
+        # 设置图标和提示
+        self.SetIcon(wx.Icon(self.ICON), self.TITLE)
+
+        # 绑定菜单项事件
+        self.Bind(wx.EVT_MENU, self.onOne, id=self.MENU_ID1)
+        self.Bind(wx.EVT_MENU, self.onExit, id=self.MENU_ID2)
+
+    def CreatePopupMenu(self):
+        '''生成菜单'''
+
+        menu = wx.Menu()
+        # 添加两个菜单项
+        menu.Append(self.MENU_ID1, '弹个框')
+        menu.Append(self.MENU_ID2, '退出')
+        return menu
+
+    def onOne(self, event):
+        wx.MessageBox('111')
+
+    def onExit(self, event):
+        wx.Exit()
 
 
-    # # 测试用途
-    # def onGo():
-    #     print("go go go!")
-    #     print(var.get())
+class MyFrame(wx.Frame):
+    def __init__(self):
+        super().__init__()
+        FolderBookmarkTaskBarIcon()
 
 
-    # # 测试用途
-    # goBtn = tk.Button(text="测试", command=onGo, fg='blue', font=("黑体", 20))
-    # goBtn.pack()
+class MyApp(wx.App):
+    def OnInit(self):
+        MyFrame()
+        return True
 
-    # 启动主窗口的消息循环
-    root.mainloop()
 
-def changeColor(event,j):
-    print("点击了aa"+str(event)+str(j))
-    print(event.widget['textvariable'])
-
-if __name__ == '__main__':
-    GUI()
+if __name__ == "__main__":
+    app = MyApp()
+    app.MainLoop()
 

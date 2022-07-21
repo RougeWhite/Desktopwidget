@@ -28,7 +28,7 @@ class DragWindow(tk.Tk):
     root_x, root_y, abs_x, abs_y = 0, 0, 0, 0
     width, height = None, None
 
-    def __init__(self, topmost=True, alpha=0.65, bg="black", width=None, height=None):
+    def __init__(self, topmost=False, alpha=0.65, bg="black", width=None, height=None):
         super().__init__()
         self["bg"] = bg
         self.width, self.height = width, height
