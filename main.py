@@ -603,17 +603,24 @@ if __name__ == '__main__':
     SetJson = Setting(Now_Path,default_setting_filename)
     # 获取用户设置
     UserSet = json.loads(str(GetUserSet(SetJson)).split('\'')[1])
-
+    print(UserSet)
     #  获取详细数据
 
     Data_List = GetData(SetJson)
     getTitle(Data_List,SetJson)
     #  根据用户配置文件读取数据
     Result_List = UserSet4Data(UserSet, Data_List)
-
     #  渲染数据到GUI
     root = DragWindow()
-    page_num = SetJson["page_num"]
+    for kl in UserSet:
+        if(kl==SetJson["page_num"]):
+            page_num = SetJson["page_num"]
+            break
+        else:
+            page_num = UserSet[0]
+
+    print(page_num)
+    print(type(page_num))
     Gui(root,SetJson, Result_List, page_num,UserSet)
     root.mainloop()
     app.MainLoop()
