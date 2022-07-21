@@ -5,7 +5,7 @@
 
 文件架中包括如下四部分
 
-![image-20220721140726431](F:\Python\Desktopwidget\ReadMe.assets\image-20220721140726431.png)
+![image-20220721140726431](.\ReadMe.assets\image-20220721140726431.png)
 
 images为图片资源
 
@@ -21,11 +21,11 @@ icon.ico是系统文件
 
 系统状态栏出现
 
-![image-20220721140649558](F:\Python\Desktopwidget\ReadMe.assets\image-20220721140649558.png)
+![image-20220721140649558](.\ReadMe.assets\image-20220721140649558.png)
 
 程序开始运行，若是首次运行加载时间为15s，随后桌面出现
 
-![image-20220721140819333](F:\Python\Desktopwidget\ReadMe.assets\image-20220721140819333.png)
+![image-20220721140819333](.\ReadMe.assets\image-20220721140819333.png)
 
 软件运行成功
 
@@ -33,7 +33,7 @@ icon.ico是系统文件
 
 通过点击翻页按钮来获取不同信息，若是出现如下信息：
 
-![image-20220721140925301](F:\Python\Desktopwidget\ReadMe.assets\image-20220721140925301.png)
+![image-20220721140925301](.\ReadMe.assets\image-20220721140925301.png)
 
 可以跳过，下次启动将不会再次加载该数据。
 
